@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+.space-mono-bold-italic {
+    font-family: "Space Mono", monospace;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.space-mono-bold {
+    font-family: "Space Mono", monospace;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.space-mono-regular-italic {
+    font-family: "Space Mono", monospace;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.space-mono-regular {
+    font-family: "Space Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    font-family: "Space Mono", monospace;
+}
+
+/* Define a cor de fundo e a cor do texto para o texto selecionado */
+::selection {
+    background-color: #0000;
+    /* Cor de fundo do texto selecionado */
+}
+
+/* Para navegadores que não suportam ::selection, adicione um fallback */
+::-moz-selection {
+    /* Para Firefox */
+    background-color: #0000;
+}
