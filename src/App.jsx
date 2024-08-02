@@ -10,20 +10,17 @@ import {
 import TypingEffect from "./components/TypingEffect";
 import { useState } from "react";
 import { getVideoInformation } from "./Service/Downloader/Video";
+import Video from "./components/Video";
 
 function App() {
-  const[url, setUrl] = useState(null);
+  const[url, setUrl] = useState('');
   const[responseBody, setResponseBody] = useState({});
 
   const handleSearch = (event) => {
     event.preventDefault();
 
-    // if(url == null || url == '')
-    //   return;
-
     getVideoInformation(url).then(res => {
       setResponseBody(res.data)
-      console.log(responseBody);
     })
   }
 
@@ -47,7 +44,7 @@ function App() {
                     placeholder="Enter video link"
                     value={url}
                     required
-                    onChange={(e) => setUrl(e.value)}
+                    onChange={(e) => setUrl(e.target.value)}
                     className="flex-1 bg-gray-800 text-cyan-300 border border-cyan-200 px-4 py-2"
                   />
                   <button
@@ -58,41 +55,7 @@ function App() {
                   </button>
                 </form>
               </div>
-              <div className="relative rounded-lg overflow-hidden border border-cyan-200">
-                <img
-                  src="https://i.ytimg.com/vi/Xs0Lxif1u9E/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDOogVmx2tA3iRznCfYrNWgovcbng"
-                  alt="Download videos"
-                  className="w-full h-auto"
-                />
-                <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-70 p-4 text-cyan-300">
-                  <h2 className="text-lg md:text-1x">
-                    Canal - Título do video
-                  </h2>
-                  <p className="text-sm md:text-base">
-                    Visualizações | Likes | Tempo
-                  </p>
-                  <hr className="border-t-2 border-cyan-300 my-3" />
-                  <div className="flex flex-col sm:flex-row gap-4 justify-end">
-                    <select
-                      name="resolution"
-                      id="resolution"
-                      className="bg-gray-800 text-cyan-300 border border-cyan-200 px-3 py-1 text-sm md:text-base"
-                    >
-                      <option value="1080p">1080p</option>
-                      <option value="720p">720p</option>
-                      <option value="360p">360p</option>
-                      <option value="144p">144p</option>
-                      <option value="audio">Audio</option>
-                    </select>
-                    <button
-                      type="submit"
-                      className="bg-gray-800 text-cyan-300 border border-cyan-200 px-4 py-2 text-sm md:text-base"
-                    >
-                      Download
-                    </button>
-                  </div>
-                </div>
-              </div>
+              <Video data={responseBody} url={url}/>
             </div>
           </main>
           <section className="left-0 w-full bg-muted py-12 px-4 md:px-6 lg:px-8 bg-cyan-700 mt-[100px]">
